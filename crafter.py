@@ -25,23 +25,21 @@ with open('items.csv') as itemfile:
 
 item_total = (len(item_name))
 print(item_name)
-print(item_name[2])
-
-
-def selection_button(item_index):
-    print(item_index)
 
 
 # -----------------------------------------------------------------------------------
 # Create widget containers
 # -----------------------------------------------------------------------------------
+
 # Create widget containers
 inventory = Frame(root)
-crafting_table = Frame(root)
+crafting_area = Frame(root)
+crafting_table = Frame(crafting_area)
 
 # Place widget containers
 inventory.grid(row=1, column=0, sticky=W)
-crafting_table.grid(row=1, column=1, sticky=W)
+crafting_area.grid(row=1, column=1, sticky=W)
+crafting_table.grid(row=0, column=0, sticky=N)
 
 
 # -----------------------------------------------------------------------------------
@@ -53,8 +51,8 @@ label_inventory = Label(root, text="Inventory", fg='black', font='none 20 bold')
 label_inventory.grid(row=0, column=0, sticky=EW)
 
 # Create crafting-table label
-label_crafting_table = Label(root, text="Crafting Table", fg='black', font='none 20 bold')
-label_crafting_table.grid(row=0, column=1, sticky=EW)
+label_crafting_area = Label(root, text="Crafting Table", fg='black', font='none 20 bold')
+label_crafting_area.grid(row=0, column=1, sticky=EW)
 
 
 # -----------------------------------------------------------------------------------
@@ -97,6 +95,16 @@ def select_item(event):
 
 # Binds the listbox to the select_item function
 listbox.bind('<<ListboxSelect>>', select_item)
+
+
+# -----------------------------------------------------------------------------------
+# Create the crafting system
+# -----------------------------------------------------------------------------------
+
+button_crafting_table = dict()
+
+for k in range(9):
+    buttons[k] = Button(top, text=info[k], command=lambda a=k: my_function(buttons[a]))
 
 
 root.mainloop()
