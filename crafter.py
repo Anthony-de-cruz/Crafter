@@ -36,18 +36,16 @@ def selection_button(item_index):
 # Create widget containers
 # -----------------------------------------------------------------------------------
 # Create widget containers
-titles = Frame(root)
 inventory = Frame(root)
 crafting_table = Frame(root)
 
 # Place widget containers
-titles.grid(row=0, column=0, sticky=W)
 inventory.grid(row=1, column=0, sticky=W)
 crafting_table.grid(row=1, column=1, sticky=W)
 
 
 # -----------------------------------------------------------------------------------
-# Create frame titles
+# Create title labels
 # -----------------------------------------------------------------------------------
 
 # Create inventory label
