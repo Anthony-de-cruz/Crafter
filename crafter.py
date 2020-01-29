@@ -52,6 +52,10 @@ crafting_table.grid(row=1, column=1, sticky=W)
 label_inventory = Label(root, text="Inventory", fg='black', font='none 20 bold')
 label_inventory.grid(row=0, column=0, sticky=EW)
 
+# Create crafting-table label
+label_crafting_table = Label(root, text="Crafting Table", fg='black', font='none 20 bold')
+label_crafting_table.grid(row=0, column=1, sticky=EW)
+
 
 # -----------------------------------------------------------------------------------
 # Create the inventory
@@ -77,7 +81,7 @@ for row in range(len(item_name)):
 
 # Create a selected item label
 label_selected = Label(inventory, text="Selected Item:", fg='black', font='none 10 bold')
-label_selected.grid(row=0, column=2, padx=(0, 0))
+label_selected.grid(row=0, column=2, padx=(0, 10))
 
 label_selected_string = StringVar()
 label_selected_variable = Label(inventory, textvariable=label_selected_string, wraplength=93, fg='black', font='none 10 bold')
