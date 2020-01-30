@@ -32,12 +32,12 @@ print(item_name)
 # -----------------------------------------------------------------------------------
 
 # Create widget containers
-inventory = Frame(root)
+inventory_area = Frame(root)
 crafting_area = Frame(root)
 crafting_table = Frame(crafting_area)
 
 # Place widget containers
-inventory.grid(row=1, column=0, sticky=W)
+inventory_area.grid(row=1, column=0, sticky=W)
 crafting_area.grid(row=1, column=1, sticky=W)
 crafting_table.grid(row=0, column=0, sticky=N)
 
@@ -60,14 +60,14 @@ label_crafting_area.grid(row=0, column=1, sticky=EW)
 # -----------------------------------------------------------------------------------
 
 # Create inventory item heading
-label_inventory_item = Label(inventory, text="Item : Amount", fg='black', font='none 10 bold')
+label_inventory_item = Label(inventory_area, text="Item : Amount", fg='black', font='none 10 bold')
 label_inventory_item.grid(row=0, column=0)
 
 # Create and position listbox and scrollbar
-scrollbar = Scrollbar(inventory)
+scrollbar = Scrollbar(inventory_area)
 scrollbar.grid(row=1, column=1, sticky="news")
 
-listbox = Listbox(inventory, height=15, width=25, border=1, yscrollcommand=scrollbar.set)
+listbox = Listbox(inventory_area, height=15, width=25, border=1, yscrollcommand=scrollbar.set)
 listbox.grid(row=1, column=0)
 
 scrollbar.config(command=listbox.yview)
@@ -78,11 +78,11 @@ for row in range(len(item_name)):
 
 
 # Create a selected item label
-label_selected = Label(inventory, text="Selected Item:", fg='black', font='none 10 bold')
+label_selected = Label(inventory_area, text="Selected Item:", fg='black', font='none 10 bold')
 label_selected.grid(row=0, column=2, padx=(0, 10))
 
 label_selected_string = StringVar()
-label_selected_variable = Label(inventory, textvariable=label_selected_string, wraplength=93, fg='black', font='none 10 bold')
+label_selected_variable = Label(inventory_area, textvariable=label_selected_string, wraplength=93, fg='black', font='none 10 bold')
 label_selected_variable.grid(row=1, column=2, sticky=N)
 
 
@@ -101,11 +101,16 @@ listbox.bind('<<ListboxSelect>>', select_item)
 # Create the crafting system
 # -----------------------------------------------------------------------------------
 
+def crafting_table_selection(button):
+    print(button)
+
+
 button_crafting_table = dict()
 
 
-for k in range(9):
-    button_crafting_table[k] = Button(crafting_table, text="", command=lambda a=k: my_function(buttons[a])).grid(row=k, column=k)
+for k in range(3):
+    button_crafting_table[k] = Button(crafting_table, text=k, command=lambda a=k: crafting_table_selection(
+        button_crafting_table[a]), height=2, width=5).grid(row=k, column=k)
 
 
 for x in button_crafting_table:
