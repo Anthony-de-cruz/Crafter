@@ -103,8 +103,13 @@ listbox.bind('<<ListboxSelect>>', select_item)
 
 button_crafting_table = dict()
 
+
 for k in range(9):
-    buttons[k] = Button(top, text=info[k], command=lambda a=k: my_function(buttons[a]))
+    button_crafting_table[k] = Button(crafting_table, text="", command=lambda a=k: my_function(buttons[a])).grid(row=k, column=k)
+
+
+for x in button_crafting_table:
+    print(x)
 
 
 root.mainloop()
