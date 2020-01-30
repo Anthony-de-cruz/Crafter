@@ -116,5 +116,4 @@ for k in range(3):
 for x in button_crafting_table:
     print(x)
 
-
 root.mainloop()
