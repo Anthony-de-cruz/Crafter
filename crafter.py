@@ -1,5 +1,6 @@
 from tkinter import *
 import csv
+from subprocess import call
 
 # Initialise root
 root = Tk()
@@ -23,7 +24,6 @@ with open('items.csv') as itemfile:
         item_name.append(name)
         item_amount.append(amount)
 
-item_total = (len(item_name))
 print(item_name)
 
 
@@ -101,19 +101,36 @@ listbox.bind('<<ListboxSelect>>', select_item)
 # Create the crafting system
 # -----------------------------------------------------------------------------------
 
-def crafting_table_selection(button):
-    print(button)
+# Crafting table button function
+def crafting_table_selection(a):
+    print()
+    print()
+    button_crafting_table[a][1].set(".")
+    print(button_crafting_table)
+    print(button_crafting_table[a][1])
+    print("selection?", select_item)
+    print("okay", a)
 
 
-button_crafting_table = dict()
+# Create the list for the crafting table buttons to be stored in
+button_crafting_table_string = StringVar()
+button_crafting_table = []
+
+for i in range(9):
+    button_crafting_table.append([])
+    button_crafting_table[i].append(0)
+    button_crafting_table[i].append(button_crafting_table_string)
+
+num = 0
+print(button_crafting_table)
 
 
-for k in range(3):
-    button_crafting_table[k] = Button(crafting_table, text=k, command=lambda a=k: crafting_table_selection(
-        button_crafting_table[a]), height=2, width=5).grid(row=k, column=k)
+# Create and position the crafting table buttons
+for y in range(3):
+    for x in range(3):
+        button_crafting_table[x][0] = Button(crafting_table, textvariable=button_crafting_table[num][1],
+                                             command=lambda a=num: crafting_table_selection(a), height=2, width=5) .grid(row=y, column=x)
+        num += 1
 
-
-for x in button_crafting_table:
-    print(x)
 
 root.mainloop()
